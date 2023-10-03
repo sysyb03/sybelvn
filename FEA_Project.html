@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<style>
+		/* Apply white text color globally to the entire document */
+		body {
+			color: white;
+		}
+		
+		/* Apply white text color to a specific element with a class */
+		.your-element-class {
+			color: white;
+		}
+		
+		</style>
+		<title>FEA Study- Plate with hole at the center </title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<head class="is-preload" style="background-color: #333;"></head>
+		<style>
+						/* CSS to create side-by-side images */
+.image-row {
+    display: flex; /* Use flexbox to create a horizontal layout */
+    justify-content: space-between; /* Space evenly between columns */
+    margin-top: 20px; /* Add margin for spacing between images and text */
+}
+
+.image-column {
+    flex: 1; /* Distribute available space evenly among columns */
+}
+
+.image-column img {
+    width: 100%; /* Ensure images take up the entire column width */
+    max-width: 600px; /* Limit the maximum width of images */
+    height: auto; /* Maintain aspect ratio */
+}
+.table-container {
+  display: inline;
+}
+
+		</style>
+	</head>
+	<body class="is-preload">
+		<body class="is-preload" style="background-color: #333;">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="title">Sybel's Portfolio</a>
+				<nav>
+					<ul>
+						<li><a href="html5up-massively/v2.html" class="title">Home</a></li>
+						
+					
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">FEA Study- Plate with hole at the center </h1>
+							<p>	This project here was my introduction to FEA. The aim of this study was to evaluate the results of stress analysis of a rectangular plate with a hole at its centre, investigate the effect of different meshing density of the results and determine the most optimal element size using the software ABAQUS. The page will take you through my work process, as well as a short discussion on the results and a reflection on the overall project.
+								</p>
+								<div class="container">
+
+									<div class="text">
+										<p>To start, I modelled the plate in ABAQUS as a 2D planar structure, as the force application was within the plate's plane. To simplify the model, only a quarter of the plate was considered, with a plane strain/stress thickness of 15mm to match the actual plate thickness.</p>
+									</div>
+									<div class="image-row">
+										<div class="image-column">
+											<img src="images/Plate_base.png" width="auto" height="auto" style="max-width: 50%; height: auto;" alt="" />
+										</div>
+										</div>
+
+										<p>The material needed, an aluminium alloy, was given in the project description, along some of its features like the Young Modulus and the engineering strain, however as it does not take into account the changing cross-sectional area during deformation, the true stress σ_T and the Plastic Strain( ε_P) were calculated manually, compiled in the following table.</p>
+							<table>
+  <tr>
+    <th><strong>Parameter</strong></th>
+    <th><strong>Magnitude</strong></th>
+    <th><strong>Units</strong></th>
+  </tr>
+  <tr>
+    <td>Young’s Modulus</td>
+    <td>73.1</td>
+    <td>GPa</td>
+  </tr>
+  <tr>
+    <td>Poisson Ratio</td>
+    <td>0.33</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td>Yield Strength</td>
+    <td>324</td>
+    <td>MPa</td>
+  </tr>
+  <tr>
+    <td>Ultimate Tensile Strength</td>
+    <td>469</td>
+    <td>MPa</td>
+  </tr>
+  <tr>
+    <td>Engineering Strain (%)</td>
+    <td>19</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td>Shear Modulus</td>
+    <td>28</td>
+    <td>GPa</td>
+  </tr>
+</table>
+<p><b>Load and Boundary Conditions</b></p>
+<p>•	To apply the load, I created a static, general step in the analysis. A pressure of 3.048 MPa was directed in the x-direction on the right side of the structure. This pressure resulted in a force of 8000 N distributed over an area of 2.63×10^(-3) m^2</p>
+<span div class="image fit"><img src="images/Plate_load.png" width="500" height="600" style="width:100%; max-width:600px; height:auto;"/></span>
+<p>•	For a simple boundary condition, a symmetry boundary condition was applied to the model, on the left and bottom sides of the structure. This ensures that the nodes behave the same way on either side, to simulate a full rectangle while only using a quarter of one.</p>
+<p><b>Meshing</b></p>
+<P>I opted for a 'Structured' mesh technique for this analysis, assuming a quad-dominant element shape due to the model's central hole while retaining rectangular properties. This choice favored a more efficient linear analysis over a more time-consuming quadratic one.
+	In this assignment, I explored five different element sizes:  9092,4977, 1060, 261, and 56.
+	 </P>
+<span div class="image fit"><img src="images/Plate_Mesh.png" width="600" height="700" style="width:100%; max-width:600px; height:auto;"/></span>
+<P><b>Results</b></P>
+<p>Based on the results obtained from varying mesh densities, it was clear that mesh density has a significant impact on the accuracy of stress predictions. As the mesh density increases, the maximum Von-Mises stress decreases, reflecting a more accurate representation of stress distribution. However, this higher accuracy comes at the cost of longer analysis times, as seen in the table below.</p>
+<table>
+	<tr>
+	  <th>Mesh Density</th>
+	  <th>Maximum Von-Mises Stress (MPa)</th>
+	  <th>Analysis Time (s)</th>
+	</tr>
+	<tr>
+	  <td>9092</td>
+	  <td>11.92</td>
+	  <td>9</td>
+	</tr>
+	<tr>
+	  <td>4977</td>
+	  <td>11.77</td>
+	  <td>13</td>
+	</tr>
+	<tr>
+	  <td>1060</td>
+	  <td>11.03</td>
+	  <td>8</td>
+	</tr>
+	<tr>
+	  <td>261</td>
+	  <td>9.77</td>
+	  <td>11</td>
+	</tr>
+	<tr>
+	  <td>56</td>
+	  <td>8.96</td>
+	  <td>11</td>
+	</tr>
+  </table>
+<p><b>Theoretical Analysis</b></p>  
+<p>The average stress was calculated manually to obtain theoretical values we could compare the results to. Following the equation, the average stress was found to be 5.33MPa. and the maximum Von-Misses stress was roughly 10.67MPa.
+	Drawing a table, the results were compared to the theoretical values, and it was deduced that a mesh density of 1060 would lead to the most accurate results.
+	</p>
+
+	<table>
+		<tr>
+		  <th>Mesh Density</th>
+		  <th>Maximum Von-Misses Stress (MPa)</th>
+		  <th>Percentage Error (%)</th>
+		</tr>
+		<tr>
+		  <td>9092</td>
+		  <td>11.92</td>
+		  <td>11.75</td>
+		</tr>
+		<tr>
+		  <td>4977</td>
+		  <td>11.77</td>
+		  <td>10.34</td>
+		</tr>
+		<tr>
+		  <td>1060</td>
+		  <td>11.03</td>
+		  <td>3.41</td>
+		</tr>
+		<tr>
+		  <td>261</td>
+		  <td>9.77</td>
+		  <td>8.44</td>
+		</tr>
+		<tr>
+		  <td>56</td>
+		  <td>8.96</td>
+		  <td>16.02</td>
+		</tr>
+	  </table>
+<p><b>Reflection</b></p>	 
+<p>
+	In retrospect, this study served as an effective introduction to the fundamentals of FEA, helping me grasp key concepts in the field, including boundary conditions, meshing, and stress analysis. However, it's important to acknowledge potential sources of error in this experiment. One could be from the decision to model the rectangular plate as a 2D quarter model instead of a full 3D model, which might introduce modeling inaccuracies. Additionally, opting for a 'Quad-dominant' mesh control, rather than 'Quad' or 'Tri,' could potentially lead to some level of inaccuracy, as it doesn't guarantee the entire mesh consists of quad elements. Lastly, the use of non-uniform meshing with varying element sizes could introduce errors, although the 'Structured' mesh technique was employed to mitigate this risk.
+	</p> 
+<div class="container">
+
+    
+		<!-- Footer -->
+		<footer class="is-preload" style="background-color: #333;">
+
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+	<body class="is-preload" style="background-color: #4f4e4e;">
+
+</html>

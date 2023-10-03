@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<style>
+		/* Apply white text color globally to the entire document */
+		body {
+			color: white;
+		}
+		
+		/* Apply white text color to a specific element with a class */
+		.your-element-class {
+			color: white;
+		}
+		
+		</style>
+		<title>CFD Project- F1 Front Wing</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<head class="is-preload" style="background-color: #333;"></head>
+		<style>
+						/* CSS to create side-by-side images */
+.image-row {
+    display: flex; /* Use flexbox to create a horizontal layout */
+    justify-content: space-between; /* Space evenly between columns */
+    margin-top: 20px; /* Add margin for spacing between images and text */
+}
+
+.image-column {
+    flex: 1; /* Distribute available space evenly among columns */
+}
+
+.image-column img {
+    width: 100%; /* Ensure images take up the entire column width */
+    max-width: 600px; /* Limit the maximum width of images */
+    height: auto; /* Maintain aspect ratio */
+}
+.table-container {
+  display: inline;
+}
+
+		</style>
+	</head>
+	<body class="is-preload">
+		<body class="is-preload" style="background-color: #333;">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="title">Sybel's Portfolio</a>
+				<nav>
+					<ul>
+						<li><a href="../html5up-massively/v2.html" class="title">Home</a></li>
+						
+					
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">CFD Project- F1 FRont Wing</h1>
+							<p>This here was my first project in Computational Fluid Dynamics, and my introduction to it. In a group of 4, we took on the challenge to investigate the impact of changes in the design of different Williams Front Wings on their aerodynamics, and use the results to create a “future” prototype offering a better balance between Lift and Drag. This project involved CADing (of the front wing), dimensioning, and, of course, CFD, on Ansys Fluent. The first step of this project was to identify the Front Wing we would be working with. As such, we selected the FW14 (1992), FW24 (2002), FW31 (2009), and FW44 (2022). Each of us selected the one they would be working on, with the FW31 being assigned to me.</p>
+							<span div class="image fit"><img src="images/FW1_contour.JPG" alt="" /></span>
+							<p>Using real-life model pictures, we extrapolated the main dimensions of the Front Wing. Our approach involved utilizing tire width, overall length, and AutoCAD, as the specific dimensions on the blueprint were not disclosed by the company. Armed with these crucial measurements, we proceeded to construct a simplified CAD model tailored for CFD studies and efficient meshing.</p>
+							<span div class="image fit"><img src="images/simplification.png" alt="" /></span>
+
+							<p>Here's a video detailing how the model was set up on Fluent and the boundary conditions applied:</p>
+					<p>To optimize our simulation, we initiated the process by splitting the wing in half along the line of symmetry along the nose using a plane and the symmetry tool. This approach effectively doubled the mesh elements while preserving the same wing area, resulting in an improved simulation. To create a negative space within the enclosure representing the wing, we employed a Boolean subtract operation. We then generated a sketch for a body of influence, which was extruded to match the width of the wing.</p>
+
+<!-- Add this iframe element to embed the video -->
+<iframe width="560" height="315" src="images/Contour_video.mp4"0" allowfullscreen></iframe>
+
+<div class="container">
+
+    <div class="text">
+        <p><b><u>Meshing</u></b></p>
+        <p><b>-Element Mesh Size:</b> The element mesh size was set to 0.2 m, providing a sufficient mesh element size close to the wing body.</p>
+        <p><b>-Enclosure Max Sizing:</b> The max sizing for the enclosure was set to 0.3m.</p>
+        <p><b>Mesh Quality Smoothing:</b> The mesh quality smoothing was also changed to high, ensuring smooth transitions between the elements. This provides accurate solutions for the flow through these areas whilst allowing the mesh density to be higher near the wing.</p>
+        <p><b>Growth Rate:</b> The growth rate was kept at 1.2, as this sufficiently increased the number of elements close to the wing in the solution.</p>
+        <p><b>Smoothing for Quality:</b> The smoothing within the quality section was set to high for smoother transitions between the elements.</p>
+        <p>A patch conforming method was set up, changing the method definition to tetrahedrons and ensuring the algorithm was set as patch conforming which aims to produce a finer mesh.</p>
+    </div>
+	<div class="image-row">
+		<div class="image-column">
+			<img src="images/Parameters.jpg" width="auto" height="auto" style="max-width: 50%; height: auto;" alt="" />
+		</div>
+		<p>•	The enclosure created in the design modeler was assigned as a body of influence, increasing the mesh element size in this region to 5e-2 m. This was used to increase the mesh density close to the wing face</p>	</div>
+<p>•Face sizing was used to enhance the mesh quality around the wing within the enclosure by increasing the number of nodes.</p>
+<p>•	An inflation layer was used to create high quality mesh layers around the wing</p>
+<div class="image-row">
+	<div class="image-column">
+		<img src="images/Boundary1.jpg" width="500" height="600" style="width:100%; max-width:600px; height:auto;margin-right: 20px;" alt="">
+	</div>
+	<div class="image-column">
+		<img src="images/Boundary2.jpg" width="500" height="600" style="width:100%; max-width:600px; height:auto;margin-left: 50px;" alt="">
+	</div>
+</div>
+	<div class="table-container">
+
+	<p><b><u>Boundary Conditions</u></b></p>	
+	<p>The Hangar Straight at the Silverstone Grand Prix circuit serves as the reference point for establishing boundary conditions. Analysis of elevation data from the F One website indicates an altitude of 200 meters above sea level at the end of this straight. Additional parameters were tabulated, with a wind speed of 78 meters per second selected as the slowest operating speed among the four wings. </p>							
+	<table border="1">
+			  
+		<tr>
+		  <td>The height of Silverstone above sea-level</td>
+		  <td>200m</td>
+		</tr>
+		<tr>
+		  <td>The temperature of the air at this altitude</td>
+		  <td>13.7C</td>
+		  		</tr>
+				<tr>
+					<td>Density of the Air at this temperature</td>
+					<td>1.202 kg/m3</td>
+				
+				</tr>
+				<tr>
+<td>Viscosity of Air at this temperature</td>
+<td>1.78E-5 Ns/m2</td>
+<tr>
+	<td>Atmospheric Pressure</td>
+	<td>98.9 kPa</td>
+</tr>
+
+				  </table>
+				  
+			</div>
+		</div>
+		
+	<p><b><u>Boundary Conditions</u></b></p>
+	<span div class="image fit"><img src="images/Boundary_Conditions.jpg" alt=""/> </span>
+	<p><b><u>Results</u></b></p>
+	<p>A table comparison was drawn between the different wings, and the concept one. FW44 exhibited the highest downforce-to-drag ratio at 4.85, indicating an excellent balance between downforce generation and drag resistance. FW31 showed a slightly lower ratio of 2.98, suggesting that it prioritizes drag reduction over downforce.  The concept wing design demonstrates a competitive aerodynamic performance, particularly in terms of its downforce-to-drag ratio, which stands at 4.71. This ratio indicates that the conceptual design strikes a favorable balance between generating downforce and minimizing drag resistance. In comparison to the tested Williams Front Wings (FW14, FW24, FW31, and FW44), the conceptual design's downforce-to-drag ratio is among the highest. Therefore, it can be concluded that the conceptual front wing design has successfully met the challenge of achieving a better balance between lift (downforce) and drag</p>
+	<table border="1">
+		<tr>
+			<th>Wing</th>
+			<th>FW14</th>
+			<th>FW24</th>
+			<th>FW31</th>
+			<th>FW44</th>
+			<th>Concept</th>
+		</tr>
+		<tr>
+			<td>Drag (N)</td>
+			<td>316.0</td>
+			<td>534.5</td>
+			<td>543.03</td>
+			<td>370.14</td>
+			<td>365.55</td>
+		</tr>
+		<tr>
+			<td>Downforce (N)</td>
+			<td>1040.9</td>
+			<td>1752.3</td>
+			<td>1620.61</td>
+			<td>1795.30</td>
+			<td>1722.31</td>
+		</tr>
+		<tr>
+			<td>Downforce/Drag</td>
+			<td>3.294</td>
+			<td>3.278</td>
+			<td>2.98</td>
+			<td>4.85</td>
+			<td>4.71</td>
+		</tr>
+	</table>
+	
+
+<p><b><u>Limitations</u></b></p>
+<p>-Obtaining dimensions from existing drawings and regulations</p>
+<span div class="image fit"><img src="images/Autocad.jpg" width="500" height="600" style="width:100%; max-width:600px; height:auto;margin-right: 20px;" alt=""/></span>
+<P>Estimating the material's properties</P>
+<span div class="image fit"><img src="images/Material.jpg" width="500" height="600" style="width:100%; max-width:600px; height:auto;margin-right: 20px;" alt=""/></span>
+<p>Simplifying designs</p>
+		<!-- Footer -->
+		<footer class="is-preload" style="background-color: #333;">
+
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+	<body class="is-preload" style="background-color: #4f4e4e;">
+
+</html>
